@@ -1,2 +1,2 @@
 # blackjack
-making the bj game
+making the blackjack game
