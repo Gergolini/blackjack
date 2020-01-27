@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 28 18:21:04 2019
-
-@author: gergo
-"""
 import numpy as np
 
 value_cards={'A':[1,11],

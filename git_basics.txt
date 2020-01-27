@@ -1,0 +1,16 @@
+repo: the whole project
+branch: the copy of the project that you are currently working on
+
+
+git clone (link) -- clone the repo
+git branch -- see all the local branches
+    git branch -a -- all the local + remote branches
+git checkout (branchname) -- switch to branch
+    git branch -b (branchname) -- creating a new branch
+git fetch -- sync your local repo with remote
+git pull -- sync your current branch with remote
+git add (filename) -- add a new file
+    git add -u -- update all the existing files
+git commit -m "(a message)" -- commit the changes you made with a msg
+git push -- push your local branch to remote
+git status -- check the changes you made in the local branch
