@@ -16,6 +16,9 @@ class Dealer:
         self.cards = np.array([])
         self.stop = False
         self.name = 'Dealer'
+        self.total_points = 0
+        self.isbj = False
+        self.bust = False
         
     def take_cards(self, ob_cards, num_cards=1):
         top = ob_cards.deck[:num_cards]
@@ -24,6 +27,13 @@ class Dealer:
         print("player {} taking {} cards ...".format(self.name, num_cards))
         print(self.cards, self.calc_points())
         
+    def init_cards(self, ob_cards):
+        self.isbj = False
+        self.stop = False
+        self.take_cards(ob_cards, 2)
+        if self.calc_points() == 21:
+            self.isbj = True
+            self.stop = True
 #        if type(cards) == list:
 #            cards = np.array(cards)
 #        self.cards = np.concatenate([self.cards, cards])
@@ -48,15 +58,21 @@ class Dealer:
         print(self.cards)
         
     def stop_by(self, ob_cards, by=17):
-        while self.calc_points() < by and not self.stop:
-           self.take_cards(ob_cards)
-           if self.calc_points() > 21:
-               print("player {} bust! stop taking cards.".format(self.name))
-               self.stop = True
-        print("Result: {} with {}.".format(self.name, self.calc_points()))
+        while not self.stop:
+            self.total_points = self.calc_points()
+            p = self.total_points
+            if p < by:
+                self.take_cards(ob_cards)
+            elif by <= p <= 21:
+                self.stop = True
+            else:
+                self.bust=True
+                print("player {} bust! stop taking cards.".format(self.name))
+                self.stop = True
+                self.total_points = 0
+        print("Result: {} with {}.".format(self.name, self.total_points))
            
         
-            
     
 class Player(Dealer):
     def __init__(self, name='', total=100):
@@ -64,7 +80,7 @@ class Player(Dealer):
         self.total = total
         self.alive = True
         self.name = name
-        self.bet = 0
+        self.bet = 10
         self.cards = np.array([])
         print("Player {} joined the game with {} dollars!".format(self.name, self.total))
         
@@ -78,9 +94,29 @@ class Player(Dealer):
                 self.bet = self.total
 
     def check_money(self):
-        if self.total < 0:
+        if self.total <= 0:
             print("{} ran out of money!".format(self.name))
             self.alive = False
+        
+    def stop_by(self, ob_cards, by=17):
+        while not self.stop:
+            self.total_points = self.calc_points()
+            p = self.total_points
+            if p < by:
+                self.take_cards(ob_cards)
+            elif by <= p <= 21:
+                self.stop = True
+            else:
+                print("player {} bust! stop taking cards.".format(self.name))
+                self.stop = True
+                self.bust = True
+                self.total_points = 0
+        print("Result: {} with {}.".format(self.name, self.total_points))
+        
+    def report_status(self):
+        alive_status = "alive" if self.alive else "dead"
+        print("Player {} ({}) has {} dollars!".format(self.name, alive_status, self.total))
+
                  
     
 #player = Player(100, 'Bob')
