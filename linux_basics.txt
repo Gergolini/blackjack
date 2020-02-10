@@ -1,0 +1,14 @@
+ls  -- list files
+	-a list all files
+vim -- lanch the text editor
+cat -- view a file        
+cd  -- change directory
+    cd .. go above one level
+    cd ../../../ go 3 lvls above
+    cd ~ go to the "home directory"
+    cd - got to the last directory
+pwd -- print working directory
+mv  -- move/rename file
+cp  -- copy file
+rm  -- remove file
+
