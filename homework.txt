@@ -1,0 +1,1 @@
+1. resolve the bug for the point count
