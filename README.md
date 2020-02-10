@@ -1,2 +1,1 @@
-# blackjack
-making the blackjack game
+This is a new README file.
