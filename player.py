@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Nov  1 16:20:44 2019
-
-@author: gergo
-"""
 import numpy as np
 
 from cards import value_cards
@@ -34,6 +28,7 @@ class Dealer:
         if self.calc_points() == 21:
             self.isbj = True
             self.stop = True
+            self.total_points = 21
 #        if type(cards) == list:
 #            cards = np.array(cards)
 #        self.cards = np.concatenate([self.cards, cards])
@@ -99,19 +94,7 @@ class Player(Dealer):
             self.alive = False
         
     def stop_by(self, ob_cards, by=17):
-        while not self.stop:
-            self.total_points = self.calc_points()
-            p = self.total_points
-            if p < by:
-                self.take_cards(ob_cards)
-            elif by <= p <= 21:
-                self.stop = True
-            else:
-                print("player {} bust! stop taking cards.".format(self.name))
-                self.stop = True
-                self.bust = True
-                self.total_points = 0
-        print("Result: {} with {}.".format(self.name, self.total_points))
+        Dealer.stop_by(self, ob_cards, by=by)
         
     def report_status(self):
         alive_status = "alive" if self.alive else "dead"
