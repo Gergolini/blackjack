@@ -13,7 +13,7 @@ class Game:
         for i, player in enumerate(self.player_list):
             if i != 0:
                 player.check_money()
-                payer.make_bet(10)
+                player.make_bet(10)
             player.init_cards(self.ob_cards)
 
         for player in self.player_list[1:]:
@@ -62,4 +62,4 @@ players = [Dealer(), gergo, qi]
 ob_cards = Cards(4)
 game = Game(players, ob_cards)
 game.initialize()
-game.loop_game(50)
+game.loop_game(10)
