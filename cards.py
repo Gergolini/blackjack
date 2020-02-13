@@ -25,7 +25,7 @@ class Cards:
     
     def check_cards(self):
         a = self.deck
-        if len(a) < self.th:
+        if len(a) < 2:
             e = "Not enough cards to start a new round, reshuffling!"
             print(e)
             self.generate_deck()
