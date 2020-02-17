@@ -1,0 +1,7 @@
+1. review the pull request qi->master, get the homework from homework.txt
+2. simulate the game 50 times from gergo branch
+    count how many times the money of qi exceeds 100/below 100 after playing 50 times.
+    count how many times the money of gergo exceeds 100/below 100 after playing 50 times.
+   write a function to do this.
+3. there is a bug when we play too many games (fails)
+    try to figure out why and fix it.
