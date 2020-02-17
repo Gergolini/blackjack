@@ -18,7 +18,7 @@ class Game:
 
         for player in self.player_list[1:]:
             player.stop_by(self.ob_cards)
-            cards.check_cards()
+#            cards.check_cards()
         self.player_list[0].stop_by(self.ob_cards)
 
     def payout(self):
@@ -35,8 +35,8 @@ class Game:
                     rate = 2.5
                 elif (not dbj and not pbj and pp>dp):
                     rate = 2.0
-                print(player.name, rate)
                 player.total = player.total + (rate*player.bet)
+            print("Player {} has {}$".format(player.name,player.total))
 
     def loop_game(self, n=100):
         """
