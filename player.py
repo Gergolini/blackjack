@@ -3,6 +3,7 @@ import numpy as np
 from cards import value_cards
 
 #print(value_cards)
+np.random.seed(42)
 
 
 class Dealer:
@@ -13,12 +14,12 @@ class Dealer:
         self.total_points = 0
         self.isbj = False
         self.bust = False
-        
+
     def take_cards(self, ob_cards, num_cards=1):
         top = ob_cards.deck[:num_cards]
         ob_cards.deck = ob_cards.deck[num_cards:]
         self.cards = np.concatenate([self.cards, top])
-        print("player {} taking {} cards ...".format(self.name, num_cards))
+        # print("player {} taking {} cards ...".format(self.name, num_cards))
         print(self.cards, self.calc_points())
         
     def init_cards(self, ob_cards):
@@ -53,6 +54,7 @@ class Dealer:
         print(self.cards)
         
     def stop_by(self, ob_cards, by=17):
+        self.bust = False
         while not self.stop:
             self.total_points = self.calc_points()
             p = self.total_points
@@ -78,7 +80,7 @@ class Player(Dealer):
         self.bet = 10
         self.cards = np.array([])
         print("Player {} joined the game with {} dollars!".format(self.name, self.total))
-        
+
     def make_bet(self, bet):
         if self.alive:
             if bet <= self.total:
@@ -99,6 +101,7 @@ class Player(Dealer):
     def report_status(self):
         alive_status = "alive" if self.alive else "dead"
         print("Player {} ({}) has {} dollars!".format(self.name, alive_status, self.total))
+        print("-"*60)
 
                  
     

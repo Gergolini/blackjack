@@ -1,5 +1,7 @@
 import numpy as np
 
+np.random.seed(42)
+
 value_cards={'A':[1,11],
     "K":10,
     "Q":10,

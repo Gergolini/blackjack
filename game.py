@@ -24,19 +24,20 @@ class Game:
     def payout(self):
         dp = self.player_list[0].total_points
         dbj = self.player_list[0].isbj
-        rate = 0.0
         for player in self.player_list[1:]:
+            rate = 0.0
             if not player.bust:
                 pp = player.total_points
                 pbj = player.isbj
-                if (dbj and pbj) or (not dbj and not pbj and pp==dp):
+                if (dbj and pbj):
+                    rate = 1.0
+                elif ((not dbj) and (not pbj) and (pp==dp)):
                     rate = 1.0
                 elif pbj and not dbj:
                     rate = 2.5
-                elif (not dbj and not pbj and pp>dp):
+                elif ((not dbj) and (not pbj) and (pp>dp)):
                     rate = 2.0
                 player.total = player.total + (rate*player.bet)
-            print("Player {} has {}$".format(player.name,player.total))
 
     def loop_game(self, n=100):
         """
@@ -50,16 +51,21 @@ class Game:
                     player.report_status()
                 player.clear_cards()
 
+a=0
+b=0
+for i in range (50):
+    dealer = Dealer()
+    gergo = Player('Gergo', 100.0)
+    qi = Player('Qi', 100.0)
+    players = [Dealer(), gergo, qi]
+    ob_cards = Cards(4)
+    game = Game(players, ob_cards)
+    game.initialize()
+    game.loop_game(10)
+    if players[1].total>=100:
+        a=a+1
+    if players[2].total>=100:
+        b=b+1
+print ("Gergo got a surplus {} times!".format (a))
+print ("Qi got a surplus {} times".format(b))
 
-
-
-
-
-dealer = Dealer()
-gergo = Player('Gergo', 100.0)
-qi = Player('Qi', 100.0)
-players = [Dealer(), gergo, qi]
-ob_cards = Cards(4)
-game = Game(players, ob_cards)
-game.initialize()
-game.loop_game(10)
