@@ -54,9 +54,9 @@ class Game:
 a=0
 b=0
 for i in range (50):
-    dealer = Dealer()
-    gergo = Player('Gergo', 100.0)
-    qi = Player('Qi', 100.0)
+    dealer = Dealer(17)
+    gergo = Player(18,'Gergo', 100.0)
+    qi = Player(19,'Qi', 100.0)
     players = [Dealer(), gergo, qi]
     ob_cards = Cards(4)
     game = Game(players, ob_cards)

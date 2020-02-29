@@ -7,9 +7,10 @@ np.random.seed(42)
 
 
 class Dealer:
-    def __init__(self):
+    def __init__(self, stop_num):
         self.cards = np.array([])
         self.stop = False
+        self.stop_num=17
         self.name = 'Dealer'
         self.total_points = 0
         self.isbj = False
@@ -53,14 +54,14 @@ class Dealer:
     def print_cards(self):
         print(self.cards)
         
-    def stop_by(self, ob_cards, by=17):
+    def stop_by(self, ob_cards):
         self.bust = False
         while not self.stop:
             self.total_points = self.calc_points()
             p = self.total_points
-            if p < by:
+            if p < self.stop_num:
                 self.take_cards(ob_cards)
-            elif by <= p <= 21:
+            elif self.stop_num <= p <= 21:
                 self.stop = True
             else:
                 self.bust=True
@@ -72,7 +73,7 @@ class Dealer:
         
     
 class Player(Dealer):
-    def __init__(self, name='', total=100):
+    def __init__(self, stop_num, name='', total=100):
         Dealer.__init__(self)
         self.total = total
         self.alive = True
@@ -95,8 +96,8 @@ class Player(Dealer):
             print("{} ran out of money!".format(self.name))
             self.alive = False
         
-    def stop_by(self, ob_cards, by=17):
-        Dealer.stop_by(self, ob_cards, by=by)
+    def stop_by(self, ob_cards):
+        Dealer.stop_by(self, ob_cards, self.stop_num)
         
     def report_status(self):
         alive_status = "alive" if self.alive else "dead"
