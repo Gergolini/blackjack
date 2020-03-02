@@ -15,6 +15,8 @@ class Cards:
     def __init__(self, n_pack=1, th=30):
         """
         players will be a list of player classes
+        :param n_pack: number of packs
+        :param th: threshold to reshuffl
         """
         self.n_pack = n_pack
         self.deck = None
@@ -27,13 +29,15 @@ class Cards:
     
     def check_cards(self):
         a = self.deck
-        if len(a) < 2:
+        if len(a) < self.th:
             e = "Not enough cards to start a new round, reshuffling!"
             print(e)
             self.generate_deck()
         
-    def print_deck(self):
-        print(self.deck)
+    def deck_status(self, verbose=False):
+        print("{} cards still remaining...".format(len(self.deck)))
+        if verbose:
+            print(self.deck)
 
 #card=Cards(2)
 #card.generate_deck()
