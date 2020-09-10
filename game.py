@@ -1,11 +1,13 @@
 from player import Dealer, Player
 from cards import Cards
+from utils import timer
 
 class Game:
     def __init__(self, player_list, ob_cards):
         self.player_list = player_list
         self.ob_cards = ob_cards
-        
+    
+    @timer
     def initialize(self):
         self.ob_cards.generate_deck()
         for i, player in enumerate(self.player_list):
@@ -14,11 +16,13 @@ class Game:
                 player.make_bet(10)
             player.init_cards(self.ob_cards)
 
+    @timer
     def run_game(self):
         for player in self.player_list[1:]:
             player.stop_by(self.ob_cards)
         self.player_list[0].stop_by(self.ob_cards)
 
+    @timer
     def payout(self):
         dp = self.player_list[0].total_points
         dbj = self.player_list[0].isbj
@@ -36,7 +40,6 @@ class Game:
                 elif (not dbj and not pbj and pp>dp):
                     rate = 2.0
                 player.total = player.total + (rate*player.bet)
-
 
 
     """
