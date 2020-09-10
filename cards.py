@@ -20,7 +20,7 @@ class Cards:
     
     def generate_deck(self):
         cards13 = np.array(list(value_cards.keys()))
-        self.deck = np.tile(cards13, 4*self.n_pack)
+        self.deck = np.tile(cards13, self.n_pack)
         np.random.shuffle(self.deck)
     
     def check_cards(self):
