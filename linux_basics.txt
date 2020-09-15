@@ -12,3 +12,7 @@ mv  -- move/rename file
 cp  -- copy file
 rm  -- remove file
 
+ctrl+z --> put current job into background
+jobs --> check all jobs in background
+fg + jobid --> put job(id) into foreground
+
