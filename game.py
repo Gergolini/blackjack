@@ -9,6 +9,7 @@ class Game:
         
     def initialize(self):
         self.ob_cards.generate_deck()
+        print("hello")
 
     def run_game(self):
         self.ob_cards.deck_status()
