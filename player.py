@@ -28,7 +28,9 @@ class Dealer:
         self.stop = False
         self.take_cards(ob_cards, 2)
         if self.calc_points() == 21:
+            self.isbj = True:
             self.isbj = True
+
             self.stop = True
             self.total_points = 21
  #       if type(cards) == list:
