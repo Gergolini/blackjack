@@ -8,4 +8,18 @@ OLD:
     try to figure out why and fix it.
 
 
-9/10/2020:
+9/15/2020:
+1. merge master to gergo
+2. To be able to adjust the amount of bets during the game, the
+    make_bet()
+   function in player.py should take another input, which is the current_score
+   of the deck being played.
+   You can use a simple step function as follows:
+   if current_score > 5:
+       make a bet of 20 bucks instead of 10
+   if current_score > 15:
+       make a bet of 40 bucks instead of 10
+   otherwise, do normal 10
+3. Run the simulation and report the money after 50 games
+   with and without the strategy
+   

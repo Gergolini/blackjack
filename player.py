@@ -1,10 +1,8 @@
 import numpy as np
 
-from cards import value_cards
+from utils import value_cards, card_score
 
-# print(value_cards)
 np.random.seed(42)
-
 
 class Dealer:
     def __init__(self):
@@ -16,21 +14,26 @@ class Dealer:
         self.isbj = False
         self.bust = False
 
-    def take_cards(self, ob_cards, num_cards=1):
+    def take_cards(self, ob_cards, num_cards=1, init=False):
         top = ob_cards.deck[:num_cards]
+        for c in top:
+            ob_cards.current_score += card_score[c]
         ob_cards.deck = ob_cards.deck[num_cards:]
         self.cards = np.concatenate([self.cards, top])
-        print("player {} taking {} cards ...".format(self.name, num_cards))
+        print(self.name, init)
+        if init:
+            print("player {} taking 2 starting cards ...".format(self.name))
+        else:
+            print("player {} taking 1 card ...".format(self.name))
         print(self.cards, self.calc_points())
+        print("Current card score: {}".format(ob_cards.current_score))
         
     def init_cards(self, ob_cards):
         self.isbj = False
         self.stop = False
-        self.take_cards(ob_cards, 2)
+        self.take_cards(ob_cards, 2, init=True)
         if self.calc_points() == 21:
-            self.isbj = True:
             self.isbj = True
-
             self.stop = True
             self.total_points = 21
  #       if type(cards) == list:
