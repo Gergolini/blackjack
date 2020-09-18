@@ -16,7 +16,7 @@ class Game:
     def run_game(self):
         for player in self.player_list[1:]:
             if player.alive:
-                player.make_bet(10)
+                player.make_bet(player.bet,self.ob_cards)
                 player.init_cards(self.ob_cards)
                 player.stop_by(self.ob_cards)
         
@@ -46,7 +46,7 @@ class Game:
                 print(player.name, rate)
 
 
-    def loop_game(self, n=2):
+    def loop_game(self, n=4):
         """
         :param: n [int] number of rounds the game is simulated
         """
