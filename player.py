@@ -78,7 +78,7 @@ class Dealer:
         
     
 class Player(Dealer):
-    def __init__(self, stop_num=17, name='', total=100):
+    def __init__(self, stop_num=17, name='', total=100, multi=2):
         Dealer.__init__(self)
         self.total = total
         self.alive = True
@@ -86,16 +86,29 @@ class Player(Dealer):
         self.bet = 10
         self.cards = np.array([])
         self.stop_num = stop_num
+        self.multi=multi
         print("Player {} joined the game with {} dollars!".format(self.name, self.total))
 
-    def make_bet(self, bet):
+    def make_bet(self, bet, ob_cards):
+        if ob_cards.current_score>=15:
+            self.bet = bet*2*self.multi
+            print("-"*60)
+            print("{} has increased their bet to {}".format(self.name,self.bet))
+            print("-"*60)
+        elif ob_cards.current_score>=5:
+            self.bet=bet*self.multi
+            print("-"*60)
+            print("{} has increased their bet to {}".format(self.name, self.bet))
+            print("-"*60)
+        else:
+            self.bet=bet
         if self.alive:
             if bet <= self.total:
                 self.total -= bet
                 self.bet = bet
             else:
+                self.bet=self.total
                 self.total = 0
-                self.bet = self.total
 
     def check_money(self):
         if self.total <= 0:

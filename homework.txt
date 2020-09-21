@@ -21,5 +21,5 @@ OLD:
        make a bet of 40 bucks instead of 10
    otherwise, do normal 10
 3. Run the simulation and report the money after 50 games
-   with and without the strategy
+	with and without the strategy
    
