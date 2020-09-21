@@ -91,17 +91,17 @@ class Player(Dealer):
 
     def make_bet(self, bet, ob_cards):
         if ob_cards.current_score>=15:
-            bet = bet*2*self.multi
+            self.bet = bet*2*self.multi
             print("-"*60)
             print("{} has increased their bet to {}".format(self.name,self.bet))
             print("-"*60)
         elif ob_cards.current_score>=5:
-            bet=bet*self.multi
+            self.bet=bet*self.multi
             print("-"*60)
-            print("{} has increased their bet to 20".format(self.name))
+            print("{} has increased their bet to {}".format(self.name, self.bet))
             print("-"*60)
         else:
-            bet=10
+            self.bet=bet
         if self.alive:
             if bet <= self.total:
                 self.total -= bet
