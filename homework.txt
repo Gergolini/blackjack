@@ -22,4 +22,19 @@ OLD:
    otherwise, do normal 10
 3. Run the simulation and report the money after 50 games
 	with and without the strategy
+
+9/22/2020:
+1. Test stategies:
+    a) stop lvl (16, 17, 18) : simulate 3 players at the same time
+    b) self.multi (X - axis) : np.linspace(starting, ending, # points)
+                             : np.linspace(1, 5, 10)
+   for every player and every self.multi:
+   calculate the total amount of money change after 10 casino visits (n_simuls)
+   and plot it against the self.multi
+   X - axis: the bet increasing ratio (self.multi)
+   y - axis: the total money change after 10 casino visits
+   3 lines/legends: 3 different players
+
+   generate the figure into result/, following whats been done in make_plot.py
+
    

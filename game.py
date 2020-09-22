@@ -46,7 +46,7 @@ class Game:
                 print(player.name, rate)
 
 
-    def loop_game(self, n=4):
+    def loop_game(self, n=20):
         """
         :param: n [int] number of rounds the game is simulated
         """
@@ -61,7 +61,8 @@ class Game:
 
 a=0
 b=0
-for i in range (1):
+n_simuls = 10 # number of simulations we make
+for i in range(n_simuls):
     dealer = Dealer()
     gergo = Player(17,'Gergo', 100.0)
     qi = Player(17,'Qi', 100.0)
@@ -73,7 +74,9 @@ for i in range (1):
     game.loop_game()
     if players[1].total>=100:
         a=a+1
+    print(players[1].total - 100)
     if players[2].total>=100:
         b=b+1
-print ("Gergo got a surplus {} times!".format (a))
+    print(players[2].total - 100)
+print ("Gergo got a surplus {} times!".format(a))
 print ("Qi got a surplus {} times".format(b))

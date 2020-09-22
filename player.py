@@ -2,7 +2,7 @@ import numpy as np
 
 from utils import value_cards, card_score
 
-np.random.seed(42)
+# np.random.seed(42)
 
 class Dealer:
     def __init__(self):
@@ -36,9 +36,6 @@ class Dealer:
             self.isbj = True
             self.stop = True
             self.total_points = 21
- #       if type(cards) == list:
-  #          cards = np.array(cards)
-   #     self.cards = np.concatenate([self.cards, cards])
     
     def clear_cards(self):
         self.cards = np.array([])
@@ -90,12 +87,12 @@ class Player(Dealer):
         print("Player {} joined the game with {} dollars!".format(self.name, self.total))
 
     def make_bet(self, bet, ob_cards):
-        if ob_cards.current_score>=15:
+        if ob_cards.current_score >= 15:
             self.bet = bet*2*self.multi
             print("-"*60)
             print("{} has increased their bet to {}".format(self.name,self.bet))
             print("-"*60)
-        elif ob_cards.current_score>=5:
+        elif ob_cards.current_score >= 5:
             self.bet=bet*self.multi
             print("-"*60)
             print("{} has increased their bet to {}".format(self.name, self.bet))

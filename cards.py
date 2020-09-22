@@ -2,7 +2,7 @@ import numpy as np
 import sys
 from utils import value_cards, card_score
 
-np.random.seed(42)
+# np.random.seed(42)
 
 class Cards:
     def __init__(self, n_pack=1, th=30):
